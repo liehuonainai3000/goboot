@@ -2,7 +2,6 @@ package cache
 
 import (
 	"fmt"
-	"strings"
 	"time"
 
 	"github.com/go-redis/redis"
@@ -52,7 +51,7 @@ func (o *RedisClient) BRPop(key string, timeoutSeconds int) (string, error) {
 		}
 		return "", err
 	}
-	return strings.Join(rst, ":"), err
+	return rst[1], err
 }
 
 func (o *RedisClient) Get(key string) (string, error) {
